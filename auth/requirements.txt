@@ -1,5 +1,5 @@
-argon-cffi==21.3.0
-argon-cffi-bindings==21.2.0
+argon2-cffi==21.3.0
+argon2-cffi-bindings==21.2.0
 
 djangorestframework-api-response==0.0.30
 
