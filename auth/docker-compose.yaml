@@ -13,7 +13,7 @@ services:
       - redis
     
   #Event Queue kafka (This turn on one time db is turn on)
-  Queue_auth:
+  queue_auth:
     build: .
     command: >
       sh -c "python consumer.py"
