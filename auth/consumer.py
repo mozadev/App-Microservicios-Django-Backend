@@ -12,11 +12,12 @@ consumer = Consumer({
     'sasl.username': os.environ.get('KAFKA_USERNAME'),
     'sasl.password': os.environ.get('KAFKA_PASSWORD'),
     'sasl.mechanisms': 'PLAIN',
-    'group.id': os.environ.get('KAFKA_GROUP_ID'),
+    'group.id': os.environ.get('KAFKA_GROUP'),
     'auto.offset.reset': 'earliest',
 })
 
 consumer.subscribe([os.environ.get('KAFKA_TOPIC')])
+
 
 while True:
     msg = consumer.poll(1.0)
@@ -44,6 +45,7 @@ while True:
                except ValidationError as e:
                    print(f"Failed to create order for user: {data['userID']}:{str(e)}")
                    
+    consumer.close()                                
 consumer.close()
            
               
