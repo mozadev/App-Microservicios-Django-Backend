@@ -35,7 +35,7 @@ while True:
         topic = msg.topic()
         value = msg.value()
         data = json.loads(value)
-        print(f'Got this message with Topic: {topic} and Value: {data}')
+        print(f'Got this message with Topic: {topic} and Value: {value}, with Data: {data}')
         
         # print('Received message: {}'.format(msg.value().decode('utf-8')))
         if topic == os.environ.get('KAFKA_TOPIC'):
@@ -44,8 +44,7 @@ while True:
                    print(f"Order created successfully for user {data['userID']}")
                except ValidationError as e:
                    print(f"Failed to create order for user: {data['userID']}:{str(e)}")
-                   
-    consumer.close()                                
+                                                   
 consumer.close()
            
               
