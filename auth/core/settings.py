@@ -84,7 +84,10 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-PROJECT_APPS = []
+PROJECT_APPS = [
+    'apps.user',
+    'apps.user_profile',
+]
 
 THIRD_PARTY_APPS = [
     'corsheaders',
