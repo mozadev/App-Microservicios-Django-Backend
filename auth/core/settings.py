@@ -259,6 +259,8 @@ SIMPLE_JWT = {
         ('rest_framework_simplejwt.tokens.AccessToken',)
 }    
     
+AUTH_USER_MODEL = 'user.UserAccount'    # NO ES NECESARIO PONER AUTH
+    
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,
