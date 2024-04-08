@@ -30,4 +30,4 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-#this line show info in develpment mode
+#this line show info in develpment mode and work with media files and static files
