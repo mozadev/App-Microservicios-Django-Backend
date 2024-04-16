@@ -8,27 +8,24 @@ from apps.user_profile.models import Profile
 from django.db import models
 from django.core.cache import cache
 
-
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
 # Create your views here.
-# the view just already paginate
 class UUIDEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, uuid.UUID):
-            #if obj is uuid, we simply return the value of obj
+            # if obj is uuid, we simply return the value of uuid
             return str(obj)
         return json.JSONEncoder.default(self, obj)
     
 class ListAllUsersView(StandardAPIView):
     def get(self, request, *args, **kwargs):
-        user = User.objects.all()
-        user_data = UserListSerializer(user, many=True).data
+        users = User.objects.all()
+        user_data = UserSerializer(users, many=True).data
         return self.paginate_response(request, json.dumps(user_data, cls=UUIDEncoder))
     
 
-#view to view other user, andhence we need to pass the id of the user
 class GetUserView(StandardAPIView):
     permission_classes = (permissions.AllowAny,)
 
@@ -44,17 +41,14 @@ class GetUserView(StandardAPIView):
 
         return self.send_response(user_data)
     
-    
+
 class GetUserProfileView(StandardAPIView):
     permission_classes = (permissions.AllowAny,)
     def get(self, request, slug, *args, **kwargs):
         print(slug)
         return self.send_response('profile_data')
-    
-    
-    
-    
-#to view profile of user        
+
+
 class GetUserProfileSerializer(serializers.ModelSerializer):
     id = serializers.UUIDField(source='user.id')
     email = serializers.EmailField(source='user.email')
@@ -66,7 +60,7 @@ class GetUserProfileSerializer(serializers.ModelSerializer):
     picture = serializers.ImageField(source='user.profile.picture')
 
     is_online = serializers.BooleanField(source='user.is_online')
-
+    
     class Meta:
         model = Profile
         fields = ['id', 'email', 'username', 'first_name', 'last_name', 'slug', 'verified', 'picture', 'is_online']
