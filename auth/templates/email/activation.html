@@ -1,36 +1,27 @@
 {% load i18n %}
 
 {% block subject %}
-{% blocktrans %}Account activation on {{ site_name }}{% endblocktrans %}
+{% trans "Account activation on" %} {{ site_name }}
 {% endblock subject %}
 
 {% block text_body %}
-{% blocktrans %}
-You're receiving this email because you need to finish the activation process on {{ site_name }}.
-Please go to the following page to activate your account:
+{% trans "You're receiving this email because you need to finish the activation process on" %}
+{{ site_name }}.
+
 {{ protocol }}://{{ domain }}/{{ url|safe }}
-{% endblocktrans %}
 
-{% trans "Thanks for using our site!" %}
+{% trans "The" %} {{ site_name }} {% trans "team" %}
 
-{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
-
-{% blocktrans %}Webmoza, Av. x, Oficina y, Lima, Peru{% endblocktrans %}
+{% trans "Lima, Peru" %}
 {% endblock text_body %}
 
 {% block html_body %}
-<p>{% blocktrans %}
-    You're receiving this email because you need to finish the activation process on {{ site_name }}.
-</p>
+<p>{% trans "You're receiving this email because you need to finish the activation process on" %}
+    {{ site_name }}.</p>
 
-<p>{% blocktrans %}
-    Please go to the following page to activate your account:
-    <a href="{{ protocol }}://{{ domain }}/{{ url|safe }}">{{ protocol }}://{{ domain }}/{{ url|safe }}</a>
-</p>
+<p><a href="{{ protocol }}://{{ domain }}/{{ url|safe }}">{{ protocol }}://{{ domain }}/{{ url|safe }}</a></p>
 
-<p>{% trans "Thanks for using our site!" %}</p>
+<p>{% trans "The" %} {{ site_name }} {% trans "team" %}</p>
 
-<p>{% blocktrans %}The {{ site_name }} team{% endblocktrans %}</p>
-
-<p>{% blocktrans %}Webmoza, Av. x, Oficina y, Lima, Peru{% endblocktrans %}</p>
+<p>{% trans "Lima, Peru" %}</p>
 {% endblock html_body %}

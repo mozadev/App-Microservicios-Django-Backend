@@ -296,7 +296,7 @@ DJOSER = {
 FILE_UPLOAD_PERMISSIONS = 0o644
 
 #PARA HACER DEBUG A NUESTRO REGISTRO DE USUARIOS
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 if not DEBUG:
     # CSRF_COOKIE_DOMAIN = os.environ.get('CSRF_COOKIE_DOMAIN_DEPLOY')
