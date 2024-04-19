@@ -4,25 +4,26 @@ services:
   backend_blog:
     container_name: mozzadev_ms_blog
     build: .
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8004"
     volumes:
       - .:/app
     ports:
-      - 8000:8000
-     
+      - 8001:8001 
     depends_on:
-      - db
+      - db_blog
       - redis
     
   #Event Queue kafka (This turn on one time db is turn on)
-  queue_blog:
-    build: .
-    command: >
-      sh -c "python consumer.py"
-    depends_on:
-      - db
+  # queue_blog:
+  #   build: .
+  #   command: >
+  #     sh -c "python consumer.py"
+  #   depends_on:
+  #     - db_blog
   
   # Database (PostgreSQL)
-  db:
+  db_blog:
     image: postgres
     container_name: django_blog_api_postgresql
     restart: always
@@ -32,7 +33,7 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
     #the first port shouldn't never change
-      - 5432:5432
+      - 5433:5432
     volumes:
       - .dbdata:/var/lib/postgresql
     
@@ -41,7 +42,7 @@ services:
       image: redis
       container_name: django_blog_api_redis
       ports:
-        - 6379:6379
+        - 6380:6379
         
 
 
