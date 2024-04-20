@@ -53,8 +53,7 @@ CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEV')
 #     },
 # }
 
-#para definir el nombre del servidor y dominio. para que se vea bien el correo
-SITE_ID = 1
+
 
 # Application definition
 
@@ -69,18 +68,13 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    'apps.user',
-    'apps.user_profile',
+
 ]
 
 THIRD_PARTY_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_api',
-    'djoser',
-    'social_django',
-    'rest_framework_simplejwt',
-    'rest_framework_simplejwt.token_blacklist',
     'channels',
     'storages',
 ]
@@ -88,11 +82,8 @@ THIRD_PARTY_APPS = [
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
   
 MIDDLEWARE = [
-    'social_django.middleware.SocialAuthExceptionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    
     'django.middleware.security.SecurityMiddleware',
-     
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -106,7 +97,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -136,29 +127,19 @@ ASGI_APPLICATION = 'core.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mozadev_auth_db',
+        'NAME': 'mozadev_blog_db',
         'USER': 'mozadev',
         'PASSWORD': 'postgres',
-        'HOST': 'db',
+        'HOST': 'db_blog',
         'PORT': '5432'
     }
 }
 
-PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
-    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
-    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
-    'django.contrib.auth.hashers.BCryptPasswordHasher',
-    'django.contrib.auth.hashers.SHA1PasswordHasher',
-    'django.contrib.auth.hashers.MD5PasswordHasher',
-    'django.contrib.auth.hashers.CryptPasswordHasher',
-]
 
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": 'redis://django_auth_api_redis:6379',
+        "LOCATION": 'redis://django_blog_api_redis:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
@@ -222,29 +203,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-#para autenticar con redes sociales
-#MODEL BACKENDO ES SOLO PARA USUARIOS NORMALES DJANGO
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'django.contrib.auth.backends.ModelBackend', 
-)
 
-
-SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT',),
-    # 'TOKEN_OBTAIN_PAIR': 'rest_framework_simplejwt.views.TokenObtainPairView',
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=90), # tiempo que el token caduca
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=180),
-    'ROTATE_REFRESH_TOKENS': True, # para que el token se renueve
-    'BLACKLIST_AFTER_ROTATION': True,
-    'AUTH_TOKE_CLASSES': 
-        ('rest_framework_simplejwt.tokens.AccessToken',)
-}    
-    
-
-    
 
 
 #NOS PERMITE HACER POST Y MAS EASYT   
