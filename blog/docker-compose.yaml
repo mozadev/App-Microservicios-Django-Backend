@@ -22,7 +22,7 @@ services:
     depends_on:
       - db_blog
   
-  # Database (PostgreSQL)
+  # Database (PostgreSQL)     
   db_blog:
     image: postgres
     container_name: django_blog_api_postgresql

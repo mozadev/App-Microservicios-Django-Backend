@@ -68,6 +68,8 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
+'apps.posts'
+'apps.category'
 
 ]
 
