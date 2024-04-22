@@ -15,12 +15,12 @@ services:
       - redis
     
   #Event Queue kafka (This turn on one time db is turn on)
-  # queue_email:
-  #   build: .
-  #   command: >
-  #     sh -c "python consumer.py"
-  #   depends_on:
-  #     - db_email
+  queue_email:
+    build: .
+    command: >
+      sh -c "python consumer.py"
+    depends_on:
+      - db_email
   
   # Database (PostgreSQL)     
   db_email:
