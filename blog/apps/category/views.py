@@ -152,11 +152,14 @@ class CategoryDeleteView(StandardAPIView):
         return self.send_response('Category deleted', status=status.HTTP_200_OK)
     
 
+#Get category by slug, when click coccina category, it will show all the sub categories.
+
 class CategoryDetailView(StandardAPIView):
     def get(self, request, slug, format=None):
         category = Category.objects.get(slug=slug)
         serializer = CategorySerializer(category)
 
+        # it sum id to the view
         address = request.META.get('HTTP_X_FORWARDED_FOR')
         if address:
             ip = address.split(',')[-1].strip()
@@ -169,7 +172,8 @@ class CategoryDetailView(StandardAPIView):
             category.save()
             view = ViewCount(category=category,ip_address=ip)
             view.save()
-
+            
+            #if exist a superior category then take all sub categories that belong to the superior category
         if Category.objects.filter(parent=category).exists():
             
             sub_categories = Category.objects.filter(parent=category)
