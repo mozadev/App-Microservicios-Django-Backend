@@ -1,48 +1,48 @@
 version: '3.8'
 services:
   #Django App (creating a server)
-  backend_blog:
-    container_name: mozzadev_ms_blog
+  backend_email:
+    container_name: mozzadev_ms_email
     build: .
     command: >
-      sh -c "python manage.py runserver 0.0.0.0:8001"
+      sh -c "python manage.py runserver 0.0.0.0:8002"
     volumes:
       - .:/app
     ports:
-      - 8001:8001 
+      - 8002:8002 
     depends_on:
-      - db_blog
+      - db_email
       - redis
     
   #Event Queue kafka (This turn on one time db is turn on)
-  queue_blog:
-    build: .
-    command: >
-      sh -c "python consumer.py"
-    depends_on:
-      - db_blog
+  # queue_email:
+  #   build: .
+  #   command: >
+  #     sh -c "python consumer.py"
+  #   depends_on:
+  #     - db_email
   
   # Database (PostgreSQL)     
-  db_blog:
+  db_email:
     image: postgres
-    container_name: django_blog_api_postgresql
+    container_name: django_email_api_postgresql
     restart: always
     environment:
-      POSTGRES_DB: mozadev_blog_db
+      POSTGRES_DB: mozadev_email_db
       POSTGRES_USER: mozadev
       POSTGRES_PASSWORD: postgres
     ports:
     #the first port shouldn't never change
-      - 5433:5432
+      - 5434:5432
     volumes:
       - .dbdata:/var/lib/postgresql
     
     # Redis Cache
   redis:
       image: redis
-      container_name: django_blog_api_redis
+      container_name: django_email_api_redis
       ports:
-        - 6380:6379
+        - 6381:6379
         
 
 
