@@ -198,7 +198,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Usuaris externos solo pueden hacer requests a la API
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
