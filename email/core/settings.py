@@ -205,11 +205,10 @@ REST_FRAMEWORK = {
 
 
 
-
 #NOS PERMITE HACER POST Y MAS EASYT   
 FILE_UPLOAD_PERMISSIONS = 0o644
 
-
+EMAIL_BACKEND='django.core.mail.backends.console.EmailBackend'
 
 if not DEBUG:
     # CSRF_COOKIE_DOMAIN = os.environ.get('CSRF_COOKIE_DOMAIN_DEPLOY')
@@ -217,8 +216,23 @@ if not DEBUG:
     CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
     CSRF_TUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
    
-
+    EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
+    SECURE_SSL_REDIRECT = True
     
+    #smtp.com para enviar correos
+    EMAIL_HOST = os.environ.get('EMAIL_HOST')
+    EMAIL_PORT = int(os.environ.get('EMAIL_PORT'))
+    
+    #YOUR SMTP.COM SENDER ACCOUNT CREDENTIALS
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+    
+    #USE TLS WHEN CONNECTING TO SMTP.COM SERVER
+    
+    EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')== 'True'
+    
+    #default "from " address for sending emails
+    DEFAULT_FROM_EMAIL = 'solomoza <noreply@solomoza.com>'
 
 
     #DJANGO-CREDITOR NO FUNCIONA con s3 atravez  django storages sin this line in setting.py
