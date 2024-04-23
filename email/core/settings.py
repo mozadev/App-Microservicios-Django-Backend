@@ -68,9 +68,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-'apps.posts'
-'apps.category'
-
+'apps.contacts'
 ]
 
 THIRD_PARTY_APPS = [
@@ -129,10 +127,10 @@ ASGI_APPLICATION = 'core.asgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mozadev_blog_db',
+        'NAME': 'mozadev_email_db',
         'USER': 'mozadev',
         'PASSWORD': 'postgres',
-        'HOST': 'db_blog',
+        'HOST': 'db_email',
         'PORT': '5432'
     }
 }
@@ -141,7 +139,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        "LOCATION": 'redis://django_blog_api_redis:6379',
+        "LOCATION": 'redis://django_email_api_redis:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
