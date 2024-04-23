@@ -68,8 +68,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-
-
+'apps.contacts'
 ]
 
 THIRD_PARTY_APPS = [
