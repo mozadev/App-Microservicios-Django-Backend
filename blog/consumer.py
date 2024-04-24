@@ -9,6 +9,7 @@ django.setup()
 
 from django.apps import apps
 
+#inside de apps-posts we want use the model Author
 Author = apps.get_model('posts', 'Author')
 
 from rest_framework.exceptions import ValidationError
