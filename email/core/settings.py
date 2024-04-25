@@ -60,7 +60,6 @@ CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEV')
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
