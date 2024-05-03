@@ -42,8 +42,7 @@ class EditUsernameView(StandardAPIView):
         user_model = User.objects.get(id=user.id)
         
         username = data['username']
-        
-        # use regex to check for special characters
+
         if re.search(pattern_special_characters, username, re.IGNORECASE) is None:
             user_model.username = username
             user_model.slug = username

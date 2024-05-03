@@ -9,20 +9,22 @@ django.setup()
 
 from django.apps import apps
 
-#inside de apps-posts we want use the model Author
 Author = apps.get_model('posts', 'Author')
 
 from rest_framework.exceptions import ValidationError
 
+KAFKA_BOOTSTRAP_SERVER=  'pkc-12576z.us-west2.gcp.confluent.cloud:9092'
+
 consumer = Consumer({
     'bootstrap.servers': os.environ.get('KAFKA_BOOTSTRAP_SERVER'),
     'security.protocol': os.environ.get('KAFKA_SECURITY_PROTOCOL'),
+    'sasl.mechanisms': 'PLAIN',
     'sasl.username': os.environ.get('KAFKA_USERNAME'), 
-    'sasl.password': os.environ.get('KAFKA_PASSWORD'),
-    'sasl.mechanism': 'PLAIN',
-    'group.id': os.environ.get('KAFKA_GROUP'),
-    'auto.offset.reset': 'earliest'
-})
+    'sasl.password':  os.environ.get('KAFKA_PASSWORD'),
+    'group.id': os.environ.get('KAFKA_GROUP'),  # Puedes ajustar el grupo de consumidores según tus necesidades
+    'auto.offset.reset': 'earliest',
+    'session.timeout.ms': 45000
+})  
 
 consumer.subscribe([os.environ.get('KAFKA_TOPIC')])
 
@@ -34,6 +36,7 @@ def create_user(data):
             email=data['email']
         )
         logger.info(f"User created successfully")
+        print('Mensaje recibido: {}'.format(msg.value().decode('utf-8')))
     except Exception as e:
         logger.error(f"Failed to create user: {str(e)}")
 

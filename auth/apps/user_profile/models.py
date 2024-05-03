@@ -1,10 +1,7 @@
 # auth/apps/user_profile/models.py
-# COGIENDO EL MODELO DE USUARIO DE SETTINGS nos permite hacer un foreingkey
-
 from django.conf import settings
 User = settings.AUTH_USER_MODEL
 
-# cuando alguien se registra se le crea el perfil
 from djoser.signals import  user_registered
 
 from django.db import models

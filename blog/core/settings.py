@@ -9,18 +9,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 environ.Env.read_env()
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = env('SECRET_KEY')
- 
-# SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
+
+# DEBUG = os.environ.get('DEBUG')
 DEBUG = 'RENDER' not in os.environ
 
-# DOMAIN = os.environ.get('DOMAIN', 'localhost')
 DOMAIN = env('DOMAIN')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
@@ -28,35 +21,28 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
-    
+
 CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEV')
 CSRF_TRUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEV')
 
-# # show terminal django
-# LOGGNG = {
-    
+
+# LOGGING = {
 #     'version': 1,
 #     'disable_existing_loggers': False,
 #     'handlers': {
-#         'file': {
-#             'level': 'DEBUG',
-#             'class': 'logging.FileHandler',
-#             'filename': 'debug.log',
+#         'console': {
+#             'class': 'logging.StreamHandler',
 #         },
-#     },  
+#     },
 #     'loggers': {
 #         'django': {
-#             'handlers': ['file'],
+#             'handlers': ['console'],
 #             'level': 'DEBUG',
-#             'propagate': True,
 #         },
 #     },
 # }
 
-
-
 # Application definition
-
 DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -67,9 +53,8 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-'apps.posts',
-'apps.category'
-
+    'apps.posts',
+    'apps.category',
 ]
 
 THIRD_PARTY_APPS = [
@@ -81,7 +66,8 @@ THIRD_PARTY_APPS = [
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS + THIRD_PARTY_APPS
-  
+
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -93,7 +79,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-# esto es donde se encuentra nuestra carpeta de url .py
+
 ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
@@ -113,7 +99,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'core.wsgi.application'
-#VERSION MEJORADA mas potente y comunicacion con mas personas 
 ASGI_APPLICATION = 'core.asgi.application'
 
 # Database
@@ -125,7 +110,6 @@ ASGI_APPLICATION = 'core.asgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -137,19 +121,17 @@ DATABASES = {
     }
 }
 
-
 CACHES = {
-    "default": {
-       'BACKEND': 'django_redis.cache.RedisCache',
-        "LOCATION": 'redis://django_blog_api_redis:6379',
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://django_blog_api_redis:6379',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-}
+        },
+    },
 }
 
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -169,17 +151,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
-
-LANGUAGE_CODE = 'en-us'
-
+LANGUAGE_CODE = 'es'
 TIME_ZONE = 'America/Lima'
-
-TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
+USE_TZ = True
 USE_TZ = True
 
 
@@ -195,59 +171,46 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Usuaris externos solo pueden hacer requests a la API
+
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.AllowAny',
-    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
 }
 
-
-
-
-#NOS PERMITE HACER POST Y MAS EASYT   
-FILE_UPLOAD_PERMISSIONS = 0o644
-
+FILE_UPLOAD_PERMISSIONS = 0o640
 
 
 if not DEBUG:
     # CSRF_COOKIE_DOMAIN = os.environ.get('CSRF_COOKIE_DOMAIN_DEPLOY')
-    ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEPLOY')
-    CORS_ORIGIN_WHITELIST = env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
-    CSRF_TUSTED_ORIGINS = env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
-   
+    ALLOWED_HOSTS=env.list('ALLOWED_HOSTS_DEPLOY')
+    CORS_ORIGIN_WHITELIST =env.list('CORS_ORIGIN_WHITELIST_DEPLOY')
+    CSRF_TRUSTED_ORIGINS =env.list('CSRF_TRUSTED_ORIGINS_DEPLOY')
 
-    
+    # django-ckeditor will not work with S3 through django-storages without this line in settings.py
+    AWS_QUERYSTRING_AUTH = False
 
+    # aws settings
 
-    #DJANGO-CREDITOR NO FUNCIONA con s3 atravez  django storages sin this line in setting.py
-
-    AWS_QUERYTRING_AUTH = False
-
-    #aws setting
-
-    AWS_ACCESS_KEY_ID=env('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY=env('AWS_SECRET_ACCESS_KEY')
+    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME = env('AWS_STORAGE_BUCKET_NAME')
 
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
     AWS_DEFAULT_ACL = 'public-read'
 
-    #S3 STATIC SETTINGS
+    # s3 static settings
     STATIC_LOCATION = 'static'
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'core.storage_backends.s3bo.StaticStorage'
+    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3StaticStorage'
 
-    #s3 public media settings
+    # s3 public media settings
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'core.storage_backends.s3bo.MediaStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-    # STATICFILES_DIRS = (os.path.join(BASE_DIR, 'build/static'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
