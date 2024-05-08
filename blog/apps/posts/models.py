@@ -11,7 +11,7 @@ class Author(models.Model):
     id = models.UUIDField(primary_key=True)
     username = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
-    picture = models.ImageField(default='media/users/user_default_profile.png',  upload_to='media/users/pictures/', blank=True, null=True, verbose_name='Picture')
+    picture = models.ImageField(default='../../media/users/user_default_profile.png',  upload_to='../../media/users/pictures/', blank=True, null=True, verbose_name='Picture')
 
     def __str__(self):
         return self.username

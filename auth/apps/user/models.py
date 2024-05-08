@@ -61,7 +61,7 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
         ('owner', 'Owner'),
     )
 
-    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True) # hacer uso de  id porque estamos en microservicios
+    id = models.UUIDField(default=uuid.uuid4, unique=True, primary_key=True)
 
     email = models.EmailField(unique=True)
     username = models.CharField(max_length=100, unique=True)
@@ -93,5 +93,3 @@ class UserAccount(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return self.email
     
-
-
