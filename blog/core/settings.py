@@ -201,7 +201,7 @@ REST_FRAMEWORK = {
 
 FILE_UPLOAD_PERMISSIONS = 0o640
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 
 if not DEBUG:
     # CSRF_COOKIE_DOMAIN = os.environ.get('CSRF_COOKIE_DOMAIN_DEPLOY')
