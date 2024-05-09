@@ -1,3 +1,5 @@
+sudo mkdir -p /var/lib/apt/lists/partial
+apt-get update
 #!/usr/bin/env bash
 # Exit on error
 set -o errexit
