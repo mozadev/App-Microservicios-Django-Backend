@@ -5,7 +5,7 @@ apt-get update
 # Exit on error
 set -o errexit
 
-chmod -R 755 ./blog
+chmod -R 755 ./render
 mkdir -p /var/lib/apt/lists/partial
 mount -o remount,rw /var/lib/apt/lists/partial
 chown -R $(whoami) /var/lib/apt/lists/partial
