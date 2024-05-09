@@ -2,6 +2,7 @@
 sudo chmod -R 755 ./blog
 
 sudo mkdir -p /var/lib/apt/lists/partial
+sudo mount -o remount,rw /var/lib/apt/lists/partial
 apt-get update
 #!/usr/bin/env bash
 # Exit on error
