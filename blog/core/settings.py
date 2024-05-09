@@ -1,3 +1,5 @@
+# Import dj-database-url at the beginning of the file.
+import dj_database_url
 from pathlib import Path
 import os
 import environ
@@ -121,11 +123,21 @@ ASGI_APPLICATION = 'core.asgi.application'
 #     }
 # }
 
-DATABASES = {
-        'default': env.db("DATABASE_URL"),
+# DATABASES = {
+#         'default': env.db("DATABASE_URL"),
         
+# }
+# DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+# Replace the SQLite DATABASES configuration with PostgreSQL:
+DATABASES = {
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+       
+        default= env.db("DATABASE_URL"),
+        conn_max_age=600
+    )
 }
-DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 CACHES = {
     'default': {
