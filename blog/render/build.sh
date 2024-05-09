@@ -1,13 +1,13 @@
-# sudo chmod -R 755 /ruta/a/tu/aplicacion
-sudo chmod -R 755 ./blog
 
-sudo mkdir -p /var/lib/apt/lists/partial
-sudo mount -o remount,rw /var/lib/apt/lists/partial
+
 apt-get update
 #!/usr/bin/env bash
 # Exit on error
 set -o errexit
 
+sudo chmod -R 755 ./blog
+sudo mkdir -p /var/lib/apt/lists/partial
+sudo mount -o remount,rw /var/lib/apt/lists/partial
 chown -R $(whoami) /var/lib/apt/lists/partial
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
