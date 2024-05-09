@@ -9,7 +9,7 @@ distro==1.7.0
 distro-info==1.0
 dj-database-url==2.1.0
 Django==5.0.6
-gyp==0.1
+gyp-next==0.18.0
 httplib2==0.20.2
 idna==3.6
 importlib-metadata==4.6.4
