@@ -15,7 +15,6 @@ channels-redis==3.4.1
 
 confluent-kafka==1.9.2
 
-Django==3.2.16
 djangorestframework-api-response==0.0.30
 
 django-cors-headers==3.13.0
