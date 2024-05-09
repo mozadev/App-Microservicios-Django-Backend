@@ -12,7 +12,7 @@ Django==5.0.6
 gyp-next==0.18.0
 httplib2==0.22.0
 idna==3.7
-importlib-metadata==4.6.4
+importlib-metadata==7.1.0
 jeepney==0.7.1
 keyring==23.5.0
 launchpadlib==1.10.16
