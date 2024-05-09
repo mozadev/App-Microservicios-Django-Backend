@@ -5,9 +5,9 @@ apt-get update
 # Exit on error
 set -o errexit
 
-sudo chmod -R 755 ./blog
-sudo mkdir -p /var/lib/apt/lists/partial
-sudo mount -o remount,rw /var/lib/apt/lists/partial
+chmod -R 755 ./blog
+mkdir -p /var/lib/apt/lists/partial
+mount -o remount,rw /var/lib/apt/lists/partial
 chown -R $(whoami) /var/lib/apt/lists/partial
 
 # Modify this line as needed for your package manager (pip, poetry, etc.)
