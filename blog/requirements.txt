@@ -18,7 +18,7 @@ keyring==25.2.0
 launchpadlib==1.11.0
 lazr.restfulclient==0.11.1
 lazr.uri==1.0.6
-more-itertools==8.10.0
+more-itertools==10.2.0
 netifaces==0.11.0
 oauthlib==3.2.0
 psycopg2-binary==2.9.9
