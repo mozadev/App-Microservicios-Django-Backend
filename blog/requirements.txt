@@ -13,7 +13,7 @@ gyp-next==0.18.0
 httplib2==0.22.0
 idna==3.7
 importlib-metadata==7.1.0
-jeepney==0.7.1
+jeepney==0.8.0
 keyring==23.5.0
 launchpadlib==1.10.16
 lazr.restfulclient==0.14.4
