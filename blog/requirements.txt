@@ -20,7 +20,7 @@ lazr.restfulclient==0.11.1
 lazr.uri==1.0.6
 more-itertools==10.2.0
 netifaces==0.11.0
-oauthlib==3.2.0
+oauthlib==3.2.2
 psycopg2-binary==2.9.9
 PyGObject==3.42.1
 PyJWT==2.3.0
