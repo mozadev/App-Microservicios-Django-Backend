@@ -8,6 +8,8 @@ apt-get update
 # Exit on error
 set -o errexit
 
+sudo chown -R $(whoami) /var/lib/apt/lists/partial
+
 # Modify this line as needed for your package manager (pip, poetry, etc.)
 pip install -r requirements.txt
 pip install wheel
