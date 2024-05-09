@@ -22,7 +22,7 @@ djangorestframework-simplejwt==5.3.1
 Pillow==10.3.0
 psycopg2==2.9.9
 
-python-slugify==6.1.2
+python-slugify==8.0.4
 PyJWT==2.5.0
 
 whitenoise==6.2.0
