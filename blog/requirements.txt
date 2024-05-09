@@ -16,7 +16,7 @@ importlib-metadata==7.1.0
 jeepney==0.8.0
 keyring==25.2.0
 launchpadlib==1.11.0
-lazr.restfulclient==0.11.1
+lazr.restfulclient==0.14.6
 lazr.uri==1.0.6
 more-itertools==10.2.0
 netifaces==0.11.0
