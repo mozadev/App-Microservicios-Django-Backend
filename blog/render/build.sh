@@ -8,5 +8,9 @@ pip install -r requirements.txt
 # Convert static asset files
 #python manage.py collectstatic --no-input
 
+# Install system dependencies
+apt-get update
+apt-get install -y libsystemd-dev libsystemd-journal-dev
+
 # Apply any outstanding database migrations
 python manage.py migrate
