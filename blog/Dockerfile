@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM python:3.12
 ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 # Instala las dependencias del sistema necesarias, incluyendo libpq-dev para psycopg2
