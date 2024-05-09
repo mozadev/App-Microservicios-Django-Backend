@@ -6,7 +6,7 @@ charset-normalizer==3.3.2
 cryptography==3.4.8
 dbus-python==1.2.18
 distro==1.7.0
-distro-info==1.1+ubuntu0.2
+distro-info==1.0
 dj-database-url==2.1.0
 Django==5.0.6
 gyp==0.1
