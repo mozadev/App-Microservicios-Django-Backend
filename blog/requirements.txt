@@ -11,7 +11,7 @@ djangorestframework-api-response==0.0.30
 
 django-cors-headers==4.3.1
 django-environ==0.11.2
-django-redis==5.2.0
+django-redis==3.1.6
 
 django-storages==1.13.1
 jsonpickle==3.0.1
