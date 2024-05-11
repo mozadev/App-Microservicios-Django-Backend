@@ -9,4 +9,8 @@ COPY . /app/
 # Crea el directorio para los archivos estáticos
 RUN mkdir -p /app/staticfiles
 
+# Comando para ejecutar el script consumer.py
+CMD ["python", "consumer.py"]
+
 CMD python manage.py runserver 0.0.0.0:10000
+
