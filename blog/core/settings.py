@@ -134,7 +134,7 @@ DATABASES = {
     'default': dj_database_url.config(
         # Replace this value with your local database's connection string.
        
-        default= env.db("DATABASE_URL")+ "?sslmode=require",
+        default= env.db("DATABASE_URL"),
         conn_max_age=600
     )
 }
