@@ -1,5 +1,5 @@
 # Import dj-database-url at the beginning of the file.
-import dj_database_url
+# import dj_database_url
 from pathlib import Path
 import os
 import environ
@@ -19,6 +19,10 @@ DEBUG = 'RENDER' not in os.environ
 DOMAIN = env('DOMAIN')
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS_DEV')
+
+# Asegúrate de que esta línea lea la variable de entorno adecuada
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS_DEPLOY', '').split(',')
+
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
